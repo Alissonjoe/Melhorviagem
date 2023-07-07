@@ -1,3 +1,14 @@
+<?php
+session_start(); // Inicia a sessão
+
+// Verifica se o usuário está logado
+if (isset($_SESSION["nome"])) {
+    $nomeUsuario = $_SESSION["nome"];
+} else {
+    $nomeUsuario = "";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,59 +64,59 @@
     <h1 class="site-title">Lugares</h1>
     <!-- Conteúdo da página de Lugares -->
     <form action="processar_envio.php" method="POST" enctype="multipart/form-data">
-  <label for="foto">Foto:</label>
-  <input type="file" name="foto" id="foto">
+      <label for="foto">Foto:</label>
+      <input type="file" name="foto" id="foto">
 
-  <label for="Lugar">Lugar:</label>
-  <textarea name="Lugar" id="Lugar"></textarea>
+      <label for="Lugar">Lugar:</label>
+      <textarea name="Lugar" id="Lugar"></textarea>
 
-  <label for="dica">Dica:</label>
-  <input type="text" name="dica" id="dica">
+      <label for="dica">Dica:</label>
+      <input type="text" name="dica" id="dica">
 
-  <button type="submit">Enviar</button>
-</form>
+      <button type="submit">Enviar</button>
+    </form>
 
 
     <h2>Informações sobre lugares para viajar:</h2>
-<form action="" method="GET">
-  <label for="busca">Buscar Comentários:</label>
-  <input type="text" name="busca" id="busca" placeholder="Digite uma palavra">
-  <button type="submit">Buscar</button>
-</form>
-<ul>
-  <?php
-  // Inclua o arquivo de conexão
-  include "conexao.php";
+    <form action="" method="GET">
+      <label for="busca">Buscar Comentários:</label>
+      <input type="text" name="busca" id="busca" placeholder="Digite uma palavra">
+      <button type="submit">Buscar</button>
+    </form>
+    <ul>
+      <?php
+      // Inclua o arquivo de conexão
+      include "conexao.php";
 
-  // Verifica se foi feita uma busca
-  if (isset($_GET["busca"]) && !empty($_GET["busca"])) {
-    $busca = $_GET["busca"];
-    // Consulta para recuperar os dados da tabela_destinos filtrando pelo termo de busca
-    $sql = "SELECT foto, comentario, dica FROM tabela_destinos WHERE comentario LIKE '%$busca%'";
-  } else {
-    // Consulta para recuperar todos os dados da tabela_destinos
-    $sql = "SELECT foto, comentario, dica FROM tabela_destinos";
-  }
+      // Verifica se foi feita uma busca
+      if (isset($_GET["busca"]) && !empty($_GET["busca"])) {
+        $busca = $_GET["busca"];
+        // Consulta para recuperar os dados da tabela_destinos filtrando pelo termo de busca
+        $sql = "SELECT foto, comentario, dica FROM tabela_destinos WHERE comentario LIKE '%$busca%'";
+      } else {
+        // Consulta para recuperar todos os dados da tabela_destinos
+        $sql = "SELECT foto, comentario, dica FROM tabela_destinos";
+      }
 
-  $result = $conexao->query($sql);
+      $result = $conexao->query($sql);
 
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      $foto = $row["foto"];
-      $comentario = $row["comentario"];
-      $dica = $row["dica"];
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          $foto = $row["foto"];
+          $comentario = $row["comentario"];
+          $dica = $row["dica"];
 
-      echo '<li>';
-      echo '<h3>' . $comentario . '</h3>';
-      echo '<img src="' . $foto . '" alt="Foto do Destino">';
-      echo '<p>' . $dica . '</p>';
-      echo '</li>';
-    }
-  } else {
-    echo '<li>Nenhum destino cadastrado ainda.</li>';
-  }
-  ?>
-</ul>
+          echo '<li>';
+          echo '<h3>' . $comentario . '</h3>';
+          echo '<img src="' . $foto . '" alt="Foto do Destino">';
+          echo '<p>' . $dica . '</p>';
+          echo '</li>';
+        }
+      } else {
+        echo '<li>Nenhum destino cadastrado ainda.</li>';
+      }
+      ?>
+    </ul>
   </main>
 
   <footer>
@@ -115,6 +126,13 @@
       <p>Praça da Catedral, s/n - Zona 02, Maringá - PR, 87010-530</p>
     </div>
   </footer>
+
+  <?php if (!empty($nomeUsuario)) { ?>
+    <div class="usuario-logado">
+      <p>Bem-vindo, <?php echo $nomeUsuario; ?>!</p>
+    </div>
+  <?php } ?>
+
 </body>
 
 </html>
