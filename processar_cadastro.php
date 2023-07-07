@@ -22,3 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
+<!-- HTML do formulário -->
+<form action="processar_cadastro.php" method="POST">
+  <!-- Campos do formulário -->
+</form>
