@@ -1,0 +1,81 @@
+body {
+  background-color: aqua;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-image: url("/imagens/canada.jpg"); /* Adicionado */
+  background-size: cover; /* Adicionado */
+  background-repeat: no-repeat; /* Adicionado */
+  background-position: center; /* Adicionado */
+}
+
+header {
+  background-color: black;
+  padding: 10px;
+  position: relative;
+}
+
+.banner {
+  display: flex;
+  height: 33.33vh;
+}
+
+.banner img {
+  flex: 1;
+  object-fit: cover;
+}
+
+nav {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  background-color: black;
+  text-align: center;
+  padding: 10px;
+  position: absolute; /* Alterado */
+  bottom: 0; /* Adicionado */
+  left: 0; /* Adicionado */
+  width: 100%; /* Adicionado */
+}
+
+.footer-content p {
+  margin: 5px;
+}
+.site-title {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  padding: 20px;
+}
+body.login-background {
+  background-color: black;
+}
+
+.main-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
