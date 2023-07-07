@@ -1,4 +1,5 @@
 <?php
+session_start()
 include "conexao.php";
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
