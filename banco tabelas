@@ -1,0 +1,14 @@
+CREATE DATABASE melhorviagem;
+USE melhorviagem;
+CREATE TABLE usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+CREATE TABLE lugares (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  informacoes TEXT,
+  imagem VARCHAR(255)
+);
+
